@@ -54,8 +54,8 @@ Para reproducir las visualizaciones:
 ## 6. Estructura de archivos
 
 - `04_dashboard_analitica.ipynb`: código de las visualizaciones.
-- `peliculas_por_genero.png`: gráfico de cantidad de películas por género.
-- `puntuacion_por_genero.png`: gráfico de puntuación promedio por género.
+- `cantidad_peliculas_genero.png`: gráfico de cantidad de películas por género.
+- `puntuacion_promedio_genero.png`: gráfico de puntuación promedio por género.
 - `presupuesto_vs_recaudacion.png`: gráfico financiero.
 
 ## 7. Consideraciones
