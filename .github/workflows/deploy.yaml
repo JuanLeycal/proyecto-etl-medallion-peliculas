@@ -1,5 +1,5 @@
 
-name: Validar conexion Databricks
+name: Deploy Databricks Bundle
 
 on:
   workflow_dispatch:
@@ -7,13 +7,15 @@ on:
     branches:
       - main
     paths:
+      - "databricks.yml"
+      - "proceso/**"
       - ".github/workflows/deploy.yaml"
 
 permissions:
   contents: read
 
 jobs:
-  validar-conexion:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,8 +25,14 @@ jobs:
       - name: Instalar Databricks CLI
         uses: databricks/setup-cli@main
 
-      - name: Validar autenticacion
+      - name: Validar bundle
         env:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-        run: databricks current-user me
+        run: databricks bundle validate -t dev
+
+      - name: Desplegar bundle
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        run: databricks bundle deploy -t dev
